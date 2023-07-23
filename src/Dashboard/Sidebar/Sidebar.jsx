@@ -1,10 +1,11 @@
 import { AiFillSetting } from "react-icons/ai";
+import { MdOutlineDashboardCustomize } from "react-icons/md";
+import { GiEntryDoor } from "react-icons/gi";
 import { Link, useLocation } from "react-router-dom";
 import SideBarListItem from "../../Shared/SidebarListItem/SidebarListItem";
 import DropdownListItem from "../../Shared/DropdownListItem/DropdownListItem";
 import { useTheme } from "../../Context/ThemeContext";
-import DashboardIcon from "../../assets/icon/dashboard.png";
-import LanguageIcon from "../../assets/icon/Language.png";
+
 import { useOpenSetting } from "../../Context/OpenSettingContext";
 
 const Sidebar = () => {
@@ -20,13 +21,8 @@ const Sidebar = () => {
                 pathName={"/dashboard"}
                 activePathName={activePathName}
                 icon={
-                    <span className="w-[20px] h-[20px] ml-1">
-                        <img
-                            className="w-full h-full"
-                            src={DashboardIcon}
-                            alt="Dashboard"
-                        />
-                    </span>
+                    <MdOutlineDashboardCustomize className="w-6 h-6"/>
+                   
                 }
             />
             {/* Lead Entry */}
@@ -36,13 +32,7 @@ const Sidebar = () => {
                 activePathName={activePathName}
                 style={"ml-2"}
                 icon={
-                    <span className="w-[29px] h-[29px]">
-                        <img
-                            className="w-full h-full"
-                            src={LanguageIcon}
-                            alt="lead-entry"
-                        />
-                    </span>
+                    <GiEntryDoor className="w-6 h-6 text-primary"/>
                 }
             />
 
