@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Dashboard from "../Dashboard/Dashboard";
-import Login from './../pages/auth/Login/Login';
-import PrivateRoutes from './PrivateRoutes';
-
+import Login from "./../pages/auth/Login/Login";
+import PrivateRoutes from "./PrivateRoutes";
+import AddLeadEntry from "../pages/LeadEntry/AddLeadEntry/AddLeadEntry";
 
 /* All of Routers */
 const routers = createBrowserRouter([
@@ -22,7 +22,23 @@ const routers = createBrowserRouter([
                         <Dashboard />
                     </PrivateRoutes>
                 ),
-            }, 
+            },
+            {
+                path: "/dashboard/lead-entry",
+                element: (
+                    <PrivateRoutes>
+                        <AddLeadEntry />
+                    </PrivateRoutes>
+                ),
+            },
+            {
+                path: "/dashboard/add-lead-entry",
+                element: (
+                    <PrivateRoutes>
+                        <AddLeadEntry />
+                    </PrivateRoutes>
+                ),
+            },
         ],
     },
 ]);

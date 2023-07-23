@@ -1,31 +1,20 @@
-import { Tooltip } from "react-tooltip";
-import { AiOutlineQuestionCircle } from "react-icons/ai";
-
 const FormSelect = ({
     label,
-    tooltipContent,
-    tooltipAnchorId,
     name,
     register,
     children,
     errorName,
     errorMessage,
     selectChoiceName,
-    placeOfTooltip,
+    isLabel=false,
 }) => {
     return (
         <div>
-            <h1 className="flex items-center font-semibold cursor-pointer  mb-2">
-                <span className="mr-1">{label}</span>
-                <span id={tooltipAnchorId}>
-                    <AiOutlineQuestionCircle className="text-black" />
-                </span>
-            </h1>
-            <Tooltip
-                anchorSelect={`#${tooltipAnchorId}`}
-                content={tooltipContent}
-                place={placeOfTooltip}
-            />
+            {isLabel && (
+                <h1 className="flex items-center font-semibold cursor-pointer  mb-2">
+                    <span className="mr-1">{label}</span>
+                </h1>
+            )}
 
             <select
                 {...register(name, { required: errorMessage })}
@@ -39,12 +28,6 @@ const FormSelect = ({
                 <option value={``}>Please choice {selectChoiceName}</option>
                 {children}
             </select>
-
-            {/* {errorName && (
-                <p className="text-base text-rose-400 mt-1 ml-1">
-                    {errorName?.message}
-                </p>
-            )} */}
         </div>
     );
 };
