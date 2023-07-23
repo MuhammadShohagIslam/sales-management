@@ -4,15 +4,15 @@ import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../../store/features/user/userSlice";
-import { useEffect, useState } from "react";
+import { /* useEffect, */ useState } from "react";
 import { FaLock, FaEnvelope, FaAtlassian } from "react-icons/fa";
 
 const Login = () => {
   const {
     register,
-    watch,
+    /* watch, */
     control,
-    setValue,
+    /* setValue, */
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -21,7 +21,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loginError, setLoginError] = useState("");
-  const [year, setYear] = useState("");
+  /* const [year, setYear] = useState(""); */
 
   const onSubmit = (data) => {
     setLoading(true);
@@ -54,10 +54,10 @@ const Login = () => {
         // setLoginError(error);
       });
   };
-  useEffect(() => {
+  /*  useEffect(() => {
     const date = new Date();
     setYear(date.getFullYear());
-  }, []);
+  }, []); */
 
   return (
     <section className="pt-[50%] md:hero md:pt-0 min-h-screen bg-banner bg-cover backdrop-blur-md">
