@@ -5,6 +5,5 @@ export const baseApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: `https://api.proggamoyquran.com/api/v1`,
     }),
-    endpoints: () => ({}),
-    tagTypes: ["Musafs", "Variants", "SurahInfos"],
+    endpoints: () => ({})
 });
