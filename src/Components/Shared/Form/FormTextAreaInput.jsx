@@ -1,10 +1,5 @@
-import { Tooltip } from "react-tooltip";
-import { AiOutlineQuestionCircle } from "react-icons/ai";
-
 const FormTextAreaInput = ({
     label,
-    tooltipContent,
-    tooltipAnchorId,
     type,
     name,
     register,
@@ -16,15 +11,7 @@ const FormTextAreaInput = ({
         <div>
             <h1 className="flex items-center font-semibold cursor-pointer  mb-2">
                 <span className="mr-1">{label}</span>
-                <span id={tooltipAnchorId}>
-                    <AiOutlineQuestionCircle className="text-black" />
-                </span>
             </h1>
-            <Tooltip
-                anchorSelect={`#${tooltipAnchorId}`}
-                content={tooltipContent}
-                place="bottom-start"
-            />
             <textarea
                 {...register(name, { required: errorMessage })}
                 type={type}
@@ -37,11 +24,6 @@ const FormTextAreaInput = ({
                 }  drop-shadow-md outline-none px-5  py-3 w-full`}
                 placeholder={placeholder}
             ></textarea>
-            {/* {errorName && (
-                <p className="text-base text-rose-400 mt-1 ml-1">
-                    {errorName?.message}
-                </p>
-            )} */}
         </div>
     );
 };
