@@ -33,9 +33,6 @@ const MainLayout = () => {
       {/* Dashboard Content */}
       {/*   */}
       <div className="relative lg:pl-[293px] pl-3 pt-32 lg:pr-9 pr-3 pb-12">
-        <div
-          className={`h-[320px] bg-secondary absolute top-0 left-0 w-full z-0`}
-        ></div>
         <Outlet />
       </div>
     </>
