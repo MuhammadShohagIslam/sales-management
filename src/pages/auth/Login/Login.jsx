@@ -1,18 +1,18 @@
-import { useForm } from "react-hook-form";
-import { useTheme } from "../../../Context/ThemeContext";
+import { useForm, Controller } from "react-hook-form";
 import { useUserLoginMutation } from "../../../store/service/user/userApiService";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../../store/features/user/userSlice";
 import { useEffect, useState } from "react";
-import logo from "../../../assets/logo/logo.png";
-import ilogo from "../../../assets/logo/infobutton.png";
+import { FaLock, FaEnvelope, FaAtlassian } from "react-icons/fa";
 
 const Login = () => {
-  const { isDark } = useTheme();
   const {
     register,
+    watch,
+    control,
+    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -60,138 +60,47 @@ const Login = () => {
   }, []);
 
   return (
-    // <div
-    //   className={`flex justify-center items-center h-screen min-h-[600px] ${
-    //     isDark ? "bg-darkBg" : "bg-white"
-    //   }`}
-    // >
-    //   <form
-    //     className={`max-w-md w-full p-6 rounded shadow-md border  ${
-    //       isDark ? "border-primary border-opacity-40" : "border-gray-100"
-    //     }`}
-    //     onSubmit={handleSubmit(onSubmit)}
-    //   >
-    //     <div className="mb-4">
-    //       <label
-    //         htmlFor="email"
-    //         className={`block mb-2 text-sm font-medium  ${
-    //           isDark ? "text-primary" : "text-gray-600"
-    //         }`}
-    //       >
-    //         Email
-    //       </label>
-    //       <input
-    //         type="email"
-    //         id="email"
-    //         required
-    //         placeholder="example@mail.com"
-    //         {...register("email", { required: true })}
-    //         className={`w-full p-2  rounded  border focus:outline-none  ${
-    //           isDark
-    //             ? "border-primary border-opacity-40 bg-darkBg text-primary placeholder:text-gray-600"
-    //             : "border-gray-300"
-    //         }`}
-    //       />
-    //     </div>
-    //     <div className="mb-6">
-    //       <label
-    //         htmlFor="password"
-    //         className={`block mb-2 text-sm font-medium  ${
-    //           isDark ? "text-primary" : "text-gray-600"
-    //         }`}
-    //       >
-    //         Password
-    //       </label>
-    //       <input
-    //         type="password"
-    //         id="password"
-    //         required
-    //         placeholder="********"
-    //         {...register("password", { required: true })}
-    //         className={`w-full p-2  rounded  border focus:outline-none  ${
-    //           isDark
-    //             ? "border-primary border-opacity-40 bg-darkBg text-primary placeholder:text-gray-600"
-    //             : "border-gray-300"
-    //         }`}
-    //       />
-    //     </div>
-    //     <div className="flex justify-end">
-    //       {loading ? (
-    //         <button disabled className="px-4 py-[6px]">
-    //           <span
-    //             className={`loading loading-dots loading-md  ${
-    //               isDark && "text-primary"
-    //             }`}
-    //           ></span>
-    //         </button>
-    //       ) : (
-    //         <button
-    //           type="submit"
-    //           className={`px-4 py-2 border rounded-sm ${
-    //             isDark
-    //               ? " border-primary border-opacity-40 text-primary hover:bg-primary hover:text-white transition-all "
-    //               : "bg-white"
-    //           }`}
-    //         >
-    //           Login
-    //         </button>
-    //       )}
-    //     </div>
-    //   </form>
-    // </div>
-
-    <section className="hero min-h-screen bg-base-200">
-      <div className="hero-content grid grid-cols-1 lg:grid-cols-2 lg:justify-items-center">
-        <div className="text-left">
-          <div className="flex items-center gap-5">
-            <img className="w-48 rounded-xl" src={logo} alt="ADB logo" />
-            <div className="text-xl md:text-5xl font-bold uppercase text-[#002069]">
-              <p>proggamoy</p>
-              <p className="flex gap-1">
-                <span>quran</span>
-                <div className="translate-y-0 md:-translate-y-4">
-                  <span
-                    className="tooltip tooltip-bottom font-normal normal-case text-left opacity-80"
-                    data-tip="Only authorized user can access to the system and it is managed and maintained by the Proggamoy quran. Never disclose your password or any security information to anyone. Update your PC with latest Anti-virus Software, personal firewall and security updates for browsers. Recommended browsers are Mozila Firefox, Google Chrome and Internet Explorer (L V)."
-                  >
-                    <img
-                      className="w-5 cursor-pointer"
-                      data-tip="hello"
-                      src={ilogo}
-                      alt="instruction logo"
-                    />
-                  </span>
-                </div>
-              </p>
+    <section className="pt-[50%] md:hero md:pt-0 min-h-screen bg-banner bg-cover backdrop-blur-md">
+      <div className="hero-content grid grid-cols-1 lg:justify-items-center">
+        <div className="card flex-shrink-1 md:w-96  shadow-2xl bg-base-100">
+          <div className="py-5 flex flex-col justify-center items-center">
+            <FaAtlassian className="text-5xl" />
+            <div className="text-center pt-3">
+              <h1 className="text-2xl font-semibold">Login</h1>
+              <p>Sign in to start your session</p>
             </div>
           </div>
-        </div>
-        <div className="card flex-shrink-1 w-full max-w-sm shadow-2xl bg-base-100">
-          <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
-            <div className="form-control">
-              <input
-                className="input input-bordered focus:outline-none focus:border-primary focus:border-opacity-30"
-                type="email"
-                placeholder="Enter your Email"
-                {...register("email", { required: "Email is required" })}
-              />
+          <form className="px-7 pb-10" onSubmit={handleSubmit(onSubmit)}>
+            <div>
+              <div className="form-control relative">
+                <input
+                  className="input input-bordered focus:outline-none focus:border-primary focus:border-opacity-30 my-2"
+                  type="email"
+                  placeholder="Enter your Email"
+                  {...register("email", { required: "Email is required" })}
+                />
+                <FaEnvelope className="absolute right-4 top-6 bottom-0" />
+              </div>
               {errors.email && (
                 <p className="text-red-600 text-xs">{errors.email?.message}</p>
               )}
             </div>
-            <div className="form-control">
-              <input
-                className="input input-bordered focus:outline-none focus:border-primary focus:border-opacity-30"
-                type="password"
-                placeholder="Enter your Password"
-                {...register("password", {
-                  required: "Password is required",
-                  minLength: {
-                    value: 8,
-                    message: "Password must be at least 8 characters long",
-                  },
-                })}
-              />
+            <div>
+              <div className="form-control relative">
+                <input
+                  className="input input-bordered focus:outline-none focus:border-primary focus:border-opacity-30 my-2"
+                  type="password"
+                  placeholder="Enter your Password"
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 8,
+                      message: "Password must be at least 8 characters long",
+                    },
+                  })}
+                />
+                <FaLock className="absolute right-4 top-6 bottom-0" />
+              </div>
               {errors.password && (
                 <p className="text-red-600 text-xs">
                   {errors.password?.message}
@@ -199,7 +108,27 @@ const Login = () => {
               )}
             </div>
             {loginError && <p className="text-red-600 text-xs">{loginError}</p>}
-            <div className="form-control mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 justify-between mt-7 items-center">
+              <div>
+                <div className="flex gap-2 mb-5">
+                  <Controller
+                    name="rememberMe"
+                    control={control}
+                    defaultValue={""}
+                    render={({ field }) => {
+                      return (
+                        <input
+                          {...field}
+                          className="mt-1 text-primary"
+                          type="checkbox"
+                          {...register("rememberMe")}
+                        />
+                      );
+                    }}
+                  />
+                  <label>Remember Me</label>
+                </div>
+              </div>
               {loading ? (
                 <span className="loading loading-dots loading-md mx-auto"></span>
               ) : (
@@ -210,12 +139,15 @@ const Login = () => {
                 />
               )}
             </div>
+            <div className="mt-3">
+              <p>Forget my password</p>
+            </div>
           </form>
         </div>
       </div>
-      <div className="absolute bottom-0 py-5 bg-white w-full text-center font-semibold text-primary">
+      {/* <div className="absolute bottom-0 py-5 bg-white w-full text-center font-semibold text-primary">
         Proggamoy quran | {year} All Rights Reserved
-      </div>
+      </div> */}
     </section>
   );
 };

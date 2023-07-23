@@ -13,6 +13,9 @@ export default {
         black: "#000000",
         white: "#ffffff",
       },
+      backgroundImage: {
+        'banner': "url('/src/assets/bg/bg-banner.jpg')",
+      }
     },
   },
   plugins: [require("daisyui"),  require('tailwind-scrollbar')],
